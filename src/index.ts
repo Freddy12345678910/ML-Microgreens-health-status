@@ -8,6 +8,8 @@ dotenv.config();
     baudRate: parseInt(<string>process.env.BAUD_RATE),
   });
 
+  const dbConnection = app.connectDB();
+  
   app.setDataListener(function (data: Buffer) {
     try {
       const dataStr = JSON.stringify(data);

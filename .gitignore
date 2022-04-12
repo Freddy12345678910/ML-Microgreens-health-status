@@ -4,5 +4,8 @@ node_modules
 # Production code
 dist
 
+# Credentials
+*.credentials.json
+
 # Environment Variables
 .env

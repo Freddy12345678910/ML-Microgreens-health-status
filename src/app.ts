@@ -6,11 +6,13 @@ import {
 } from "serialport";
 import { AutoDetectTypes } from "@serialport/bindings-cpp";
 
+import admin from "firebase-admin";
+
 import { Arduino } from "./types/types";
 
 export class App implements Arduino.App {
-  port: SerialPort<AutoDetectTypes>;
-  parser: ReadlineParser;
+  readonly port: SerialPort<AutoDetectTypes>;
+  readonly parser: ReadlineParser;
 
   constructor(
     portConfig: SerialPortOpenOptions<AutoDetectTypes>,
@@ -36,8 +38,17 @@ export class App implements Arduino.App {
     });
   }
 
-  setDataListener(fn: Arduino.DataListener) {
-    this.parser.on("data", fn);
+  setDataListener(listener: Arduino.DataListener): void {
+    this.parser.on("data", listener);
+  }
+
+  connectDB(): admin.app.App | void {
+    try {
+      const dbConnection = admin.initializeApp();
+      return dbConnection;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   init(): void {
