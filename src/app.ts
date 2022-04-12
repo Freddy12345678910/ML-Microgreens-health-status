@@ -7,6 +7,7 @@ import {
 import { AutoDetectTypes } from "@serialport/bindings-cpp";
 
 import admin from "firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
 
 import { Arduino } from "./types/types";
 
@@ -42,10 +43,12 @@ export class App implements Arduino.App {
     this.parser.on("data", listener);
   }
 
-  connectDB(): admin.app.App | void {
+  connectDB(): admin.firestore.Firestore | void {
     try {
-      const dbConnection = admin.initializeApp();
-      return dbConnection;
+      admin.initializeApp();
+      const db = getFirestore();
+      console.log("DB Connected");
+      return db;
     } catch (error) {
       console.log(error);
     }

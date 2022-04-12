@@ -2,18 +2,30 @@ import { App } from "./app";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-(function __init__() {
+import admin from "firebase-admin";
+
+import { SmartGreenHouse } from "./types/types";
+
+(async function __init__() {
   const app = new App({
     path: <string>process.env.SERIAL_PORT,
     baudRate: parseInt(<string>process.env.BAUD_RATE),
   });
 
-  const dbConnection = app.connectDB();
-  
+  const db = <admin.firestore.Firestore>app.connectDB();
+
+  db.collection("NDWI").onSnapshot((NDWI) => {
+    console.log(NDWI.docs[NDWI.docs.length - 1].data());
+  });
+
   app.setDataListener(function (data: Buffer) {
     try {
-      const dataStr = JSON.stringify(data);
-      console.log(JSON.parse(dataStr));
+      const { type, value } = <SmartGreenHouse.VegetationIndex>(
+        JSON.parse(data.toString())
+      );
+      db.collection(type).add({
+        value
+      });
     } catch (error) {
       console.log(error);
     }
