@@ -10,10 +10,10 @@ La información de la salud de las plantas será mostrada en una **página WEB**
 
 Durante el proceso de desarrollo fueron utilizadas las siguientes herramientas:
 
-**1.** Arduino IDE (Lenguaje C)
-**2.** Visual Studio Code
-**3.** Git
-**4.** GitHub
+**1.** Arduino IDE (Lenguaje C)  
+**2.** Visual Studio Code  
+**3.** Git  
+**4.** GitHub  
 
 # III. Tecnologías
 
@@ -21,28 +21,28 @@ Durante el proceso de desarrollo fueron utilizadas las siguientes herramientas:
 
 Del lado del cliente fueron implementadas las siguientes tecnologías:
 
-**1.** TypeScript
-**2.** React
-**3.** Material-UI
-**4.** Firebase Firestore
-**5.** Netlify
+**1.** TypeScript  
+**2.** React  
+**3.** Material-UI  
+**4.** Firebase Firestore  
+**5.** Netlify  
 
 ## Servidor
 
 Del lado del servidor fueron implementadas las siguientes tecnologías:
 
-**1.** TypeScript
-**2.** Node.js
-**3.** SerialPort
-**4.** Firebase Firestore
+**1.** TypeScript  
+**2.** Node.js  
+**3.** SerialPort  
+**4.** Firebase Firestore  
 
 # IV. Algoritmos
 
 Se utilizan algoritmos de **Machine Learning** tales como: 
 
-**1.** Random Forest
-**2.** Support Vector Machine
-**3.** Redes Neuronales
+**1.** Random Forest  
+**2.** Support Vector Machine  
+**3.** Redes Neuronales  
 
 Gracias a estos, con la data almacenada se puede crear un sistema que aprenda los patrones ocultos de las plantas saludables.
 
