@@ -6,11 +6,14 @@ import {
 } from "serialport";
 import { AutoDetectTypes } from "@serialport/bindings-cpp";
 
+import admin from "firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
+
 import { Arduino } from "./types/types";
 
 export class App implements Arduino.App {
-  port: SerialPort<AutoDetectTypes>;
-  parser: ReadlineParser;
+  readonly port: SerialPort<AutoDetectTypes>;
+  readonly parser: ReadlineParser;
 
   constructor(
     portConfig: SerialPortOpenOptions<AutoDetectTypes>,
@@ -36,8 +39,19 @@ export class App implements Arduino.App {
     });
   }
 
-  setDataListener(fn: Arduino.DataListener) {
-    this.parser.on("data", fn);
+  setDataListener(listener: Arduino.DataListener): void {
+    this.parser.on("data", listener);
+  }
+
+  connectDB(): admin.firestore.Firestore | void {
+    try {
+      admin.initializeApp();
+      const db = getFirestore();
+      console.log("DB Connected");
+      return db;
+    } catch (error) {
+      throw error;
+    }
   }
 
   init(): void {
