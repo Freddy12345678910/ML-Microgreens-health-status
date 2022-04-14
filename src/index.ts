@@ -2,32 +2,32 @@ import { App } from "./app";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import admin from "firebase-admin";
+import admin, { firestore } from "firebase-admin";
 
 import { SmartGreenHouse } from "./types/types";
 
-(async function __init__() {
+(function __init__() {
   const app = new App({
     path: <string>process.env.SERIAL_PORT,
     baudRate: parseInt(<string>process.env.BAUD_RATE),
   });
 
   const db = <admin.firestore.Firestore>app.connectDB();
-
-  db.collection("NDWI").onSnapshot((NDWI) => {
-    console.log(NDWI.docs[NDWI.docs.length - 1].data());
-  });
-
-  app.setDataListener(function (data: Buffer) {
+  
+  app.setDataListener(async (data: Buffer) => {
     try {
-      const { type, value } = <SmartGreenHouse.VegetationIndex>(
+      const parsedData = <SmartGreenHouse.VegetationIndex>(
         JSON.parse(data.toString())
       );
-      db.collection(type).add({
-        value
-      });
+      const dataInserts = Object.keys(parsedData).map((key) =>
+        db.collection(key).add({
+          value: parsedData[<keyof SmartGreenHouse.VegetationIndex>key],
+          created_at: firestore.Timestamp.fromDate(new Date())
+        })
+      );
+      await Promise.all(dataInserts);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   });
 

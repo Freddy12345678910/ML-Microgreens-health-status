@@ -50,7 +50,7 @@ export class App implements Arduino.App {
       console.log("DB Connected");
       return db;
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 
