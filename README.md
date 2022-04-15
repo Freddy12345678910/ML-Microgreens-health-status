@@ -13,7 +13,7 @@ Durante el proceso de desarrollo fueron utilizadas las siguientes herramientas:
 **1.** Arduino IDE (Lenguaje C)  
 **2.** Visual Studio Code  
 **3.** Git  
-**4.** GitHub  
+**4.** GitHub
 
 # III. Tecnologías
 
@@ -25,7 +25,7 @@ Del lado del cliente fueron implementadas las siguientes tecnologías:
 **2.** React  
 **3.** Material-UI  
 **4.** Firebase Firestore  
-**5.** Netlify  
+**5.** Netlify
 
 ## Servidor
 
@@ -34,15 +34,15 @@ Del lado del servidor fueron implementadas las siguientes tecnologías:
 **1.** TypeScript  
 **2.** Node.js  
 **3.** SerialPort  
-**4.** Firebase Firestore  
+**4.** Firebase Firestore
 
 # IV. Algoritmos
 
-Se utilizan algoritmos de **Machine Learning** tales como: 
+Se utilizan algoritmos de **Machine Learning** tales como:
 
 **1.** Random Forest  
 **2.** Support Vector Machine  
-**3.** Redes Neuronales  
+**3.** Redes Neuronales
 
 Gracias a estos, con la data almacenada se puede crear un sistema que aprenda los patrones ocultos de las plantas saludables.
 
@@ -59,3 +59,11 @@ Gracias a estos, con la data almacenada se puede crear un sistema que aprenda lo
 **•** **Firebase Firestore:** Es una base de datos de documentos NoSQL creada para escalado automático, alto rendimiento y facilidad de desarrollo de aplicaciones, además de tener la característica de tiempo real.
 
 **•** **Netlify:** Es una empresa de informática en la nube con sede en San Francisco que ofrece alojamiento y servicios backend sin servidor para aplicaciones web y sitios web estáticos.
+
+## Algoritmos de Machine Learning
+
+**•** **Random Forest:** Random forest es un algoritmo de aprendizaje automático supervisado que se usa ampliamente en problemas de clasificación y regresión. Construye árboles de decisión en diferentes muestras y toma su voto mayoritario para la clasificación y el promedio en caso de regresión.
+
+**•** **Support Vector Machine:** SVM es un algoritmo de aprendizaje automático supervisado que se puede utilizar para problemas de clasificación o regresión. Utiliza una técnica llamada el truco del kernel para transformar sus datos y luego, en función de estas transformaciones, encuentra un límite óptimo entre las posibles salidas.
+
+**•** **Redes Neuronales:** Las redes neuronales, también conocidas como redes neuronales artificiales (ANN) o redes neuronales simuladas (SNN), son un subconjunto del aprendizaje automático y están en el corazón de los algoritmos de aprendizaje profundo. Su nombre y estructura están inspirados en el cerebro humano, imitando la forma en que las neuronas biológicas se envían señales entre sí.
