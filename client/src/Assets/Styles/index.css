@@ -1,8 +1,8 @@
 :root {
-    --body-bg: #F1F4F6;
+  --body-bg: #f1f4f6;
 }
 
 body {
-    background: var(--body-bg);
-    font-family: 'Roboto', 'sans-serif';
+  background: var(--body-bg);
+  font-family: "Roboto", "sans-serif";
 }

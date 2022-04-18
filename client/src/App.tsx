@@ -1,10 +1,8 @@
-import { Container } from "@mui/material";
+import Header from "./Layouts/Header/Header";
 
 function App() {
   return (
-    <Container>
-      <h1>Hello World</h1>
-    </Container>
+    <Header />
   );
 }
 
