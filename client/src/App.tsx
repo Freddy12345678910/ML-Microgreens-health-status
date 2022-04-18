@@ -1,8 +1,12 @@
 import Header from "./Layouts/Header/Header";
+import Navigation from "./Layouts/Navigation/Navigation";
 
 function App() {
   return (
-    <Header />
+    <div className="App">
+      <Header />
+      <Navigation />
+    </div>
   );
 }
 
