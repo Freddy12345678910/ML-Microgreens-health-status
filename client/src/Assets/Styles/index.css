@@ -5,4 +5,5 @@
 body {
   background: var(--body-bg);
   font-family: "Roboto", "sans-serif";
+  overflow-x: hidden;
 }
