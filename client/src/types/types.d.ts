@@ -12,6 +12,11 @@ declare namespace Dashboard {
   };
 
   type GraphItemProps = {
-    collection: string;
+    collectionName: string;
   };
+
+  type VegetationIndexDoc = {
+    created_date: string;
+    value: number;
+  }
 }

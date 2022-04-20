@@ -7,8 +7,8 @@ function DashboardGraphs() {
 
   return (
     <Box sx={styles.container}>
-      {collections.map((collection) => (
-        <DashboardGraphItem collection={collection} />
+      {collections.map((collection, index) => (
+        <DashboardGraphItem key={index} collectionName={collection} />
       ))}
     </Box>
   );
