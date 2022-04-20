@@ -4,3 +4,14 @@ declare namespace Nav {
     iconSrc: string;
   };
 }
+
+declare namespace Dashboard {
+  type titleProps = {
+    iconSrc: string;
+    text: string;
+  };
+
+  type GraphItemProps = {
+    collection: string;
+  };
+}
