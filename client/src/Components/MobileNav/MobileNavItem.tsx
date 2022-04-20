@@ -23,6 +23,7 @@ const styles = {
     ":hover": { cursor: "pointer", backgroundColor: "rgba(255,255,255,0.2)" },
   },
   link: {
+    position: "relative" as any,
     display: "flex",
     flexDirection: "column" as any,
     alignItems: "center",
@@ -31,6 +32,11 @@ const styles = {
   },
   icon: { margin: ".2em auto", width: "40px" },
   bottomLine: {
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    right: "0",
+    margin: "0 auto",
     height: "5px",
     width: "60%",
     background: "white",
