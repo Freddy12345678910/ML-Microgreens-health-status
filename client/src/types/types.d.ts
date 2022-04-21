@@ -6,6 +6,7 @@ declare namespace Dashboard {
 
   type GraphItemProps = {
     collectionName: Database.CollectionName;
+    title: string;
   };
 }
 
