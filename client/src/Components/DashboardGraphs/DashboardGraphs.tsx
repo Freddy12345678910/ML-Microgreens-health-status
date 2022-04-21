@@ -1,14 +1,14 @@
-import { Box } from "@mui/material";
+import { Box, formControlClasses } from "@mui/material";
 
-import DashboardGraphItem from "./DashboardGraphItem";
+import GraphItem from "./GraphItem";
 
 function DashboardGraphs() {
-  const collections = ["NDWI", "NDVI", "ARVI"];
-
+  const collections: Database.CollectionName[] = ["NDWI", "NDVI", "ARVI"];
+  
   return (
     <Box sx={styles.container}>
-      {collections.map((collection, index) => (
-        <DashboardGraphItem key={index} collectionName={collection} />
+      {collections.map((collection) => (
+        <GraphItem key={collection} collectionName={collection} />
       ))}
     </Box>
   );
@@ -16,10 +16,13 @@ function DashboardGraphs() {
 
 const styles = {
   container: {
-    height: "500px",
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: 'center',
+    justifyContent: 'center',
     width: "100%",
-    margin: "2em 0",
-    background: "white",
+    margin: "3em 0 2em 0",
+    paddingBottom: "2em",
   },
 };
 
