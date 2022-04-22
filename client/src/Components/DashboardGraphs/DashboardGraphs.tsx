@@ -3,21 +3,28 @@ import { Box } from "@mui/material";
 import DashboardGraphItem from "./DashboardGraphItem";
 
 function DashboardGraphs() {
-  const collections: Database.CollectionName[] = ["NDWI", "NDVI", "ARVI"];
-
-  const graphTitle: Record<Database.CollectionName, string> = {
-    NDWI: "NDWI - Normalized Difference Water Index",
-    NDVI: "NDVI - Normalized Difference Vegetation Index",
-    ARVI: "ARVI - Atmospherically Resistent Vegetation Index ",
-  };
+  const graphs: Dashboard.Graphs = [
+    {
+      name: "NDWI",
+      title: "NDWI - Normalized Difference Water Index",
+    },
+    {
+      name: "NDVI",
+      title: "NDVI - Normalized Difference Vegetation Index",
+    },
+    {
+      name: "ARVI",
+      title: "ARVI - Atmospherically Resistent Vegetation Index ",
+    },
+  ];
 
   return (
     <Box sx={styles.container}>
-      {collections.map((collection) => (
+      {graphs.map(({ name, title }) => (
         <DashboardGraphItem
-          key={collection}
-          collectionName={collection}
-          title={graphTitle[collection]}
+          key={name}
+          name={name}
+          title={title}
         />
       ))}
     </Box>

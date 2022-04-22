@@ -4,10 +4,14 @@ declare namespace Dashboard {
     text: string;
   };
 
+  type Graphs = GraphItemProps[];
+
   type GraphItemProps = {
-    collectionName: Database.CollectionName;
+    name: Database.CollectionName;
     title: string;
   };
+
+  type GraphData = { name?: string; fill?: string; value: number };
 }
 
 declare namespace Nav {

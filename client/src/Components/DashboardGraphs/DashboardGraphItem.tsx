@@ -4,9 +4,16 @@ import { Box, Skeleton, useMediaQuery } from "@mui/material";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-import { Pie } from "react-chartjs-2";
+import { PieChart, Pie, Cell } from "recharts";
 
-import { onSnapshot } from "firebase/firestore";
+import {
+  DocumentData,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  QuerySnapshot,
+} from "firebase/firestore";
 
 import useFirebaseCollection from "../../Hooks/useFirebaseCollection";
 
@@ -14,30 +21,64 @@ import { handleBreakpoints } from "../../Utils/handleBreakpoints";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function DashboardGraphItem({
-  collectionName,
-  title,
-}: Dashboard.GraphItemProps) {
+function DashboardGraphItem({ name, title }: Dashboard.GraphItemProps) {
   const [firstSnapshot, setFirstSnapshot] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [graphValue, setGraphValue] = useState<number | null>(null);
+  const [graphData, setGraphData] = useState<Dashboard.GraphData[]>([]);
 
-  const collection = useFirebaseCollection(collectionName);
+  const collection = useFirebaseCollection(name);
+
+  function handleSnapshot(snapshot: QuerySnapshot<DocumentData>) {
+    if (!snapshot.empty) {
+      const doc = snapshot.docs[0].data() as Database.VegetationIndexDoc;
+
+      requestAnimationFrame(() => {
+        const valuePercent = getValuePercent(doc.value);
+        const valuePercentDifference = 100 - valuePercent;
+
+        setGraphData([
+          {
+            value: valuePercent,
+            fill: getPercentColor(valuePercent),
+          },
+          { value: valuePercentDifference, fill: "#F1F4F6" },
+        ]);
+      });
+    }
+
+    if (firstSnapshot) {
+      setFirstSnapshot(false);
+      setLoading(false);
+    }
+  }
+
+  function getValuePercent(value: number) {
+    const halfPercent = 50;
+    const difference = halfPercent * Math.abs(value);
+    const result = halfPercent + (value > 0 ? difference : -difference);
+    return result;
+  }
+
+  function getPercentColor(percent: number) {
+    if(percent < 50) {
+      return "#A38037"
+    } else if (percent < 66.5) {
+      return "#667919";
+    } else if (percent < 83) {
+      return "#7EE280";
+    }
+    return "#3EC461";
+  }
 
   useEffect(() => {
     setLoading(true);
 
-    const unsubscribe = onSnapshot(collection, (snapshot) => {
-      const lastDoc = snapshot.docs[
-        snapshot.docs.length - 1
-      ].data() as unknown as Database.VegetationIndexDoc;
-      console.log(lastDoc.value);
-      setGraphValue(lastDoc.value);
-      if (firstSnapshot) {
-        setFirstSnapshot(false);
-        setLoading(false);
-      }
-    });
+    const collectionQuery = query(
+      collection,
+      orderBy("created_at", "desc"),
+      limit(1)
+    );
+    const unsubscribe = onSnapshot(collectionQuery, handleSnapshot);
 
     return unsubscribe;
   }, []);
@@ -62,7 +103,7 @@ function DashboardGraphItem({
     default: { active: true, value: "100%" },
   };
 
-  function Loading() {
+  function LoadingSkeleton() {
     return (
       <Box
         sx={{
@@ -78,7 +119,7 @@ function DashboardGraphItem({
   }
 
   return loading ? (
-    <Loading />
+    <LoadingSkeleton />
   ) : (
     <Box
       sx={{
@@ -92,21 +133,30 @@ function DashboardGraphItem({
       </Box>
 
       <Box sx={styles.graphContainer}>
-        <Pie
-          redraw
-          data={{
-            labels: ["Blue"],
-            datasets: [
-              {
-                label: "# of Votes",
-                data: [1, graphValue],
-                backgroundColor: ["rgba(54, 162, 235, 0.2)"],
-                borderColor: "black",
-                borderWidth: 1,
-              },
-            ],
-          }}
-        />
+        <PieChart height={300} width={300}>
+          <Pie
+            dataKey="value"
+            data={graphData}
+            strokeWidth={5}
+            animationDuration={1000}
+          >
+            {graphData.map((data, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={data.fill}
+                style={{
+                  filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                }}
+                stroke={"black"}
+                strokeWidth={2}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </Box>
+
+      <Box sx={styles.percentageContainer}>
+        <h3 style={styles.percentage}>{graphData[0]?.value.toFixed(2)}%</h3>
       </Box>
     </Box>
   );
@@ -132,6 +182,10 @@ export const styles = {
     width: "300px",
     margin: "auto",
   },
+  percentageContainer: {
+    margin: "0 auto 1em auto",
+  },
+  percentage: {},
   loading: {
     textSkeleton: {
       position: "relative",
