@@ -17,7 +17,13 @@ function MobileNav() {
 }
 
 const styles = {
-  navContainer: { position: "fixed", bottom: 0, left: 0, right: 0 },
+  navContainer: {
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: "100",
+  },
   nav: {
     display: "flex",
     alignItems: "center",
