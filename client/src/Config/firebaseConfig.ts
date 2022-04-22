@@ -1,8 +1,8 @@
 export default {
-  apiKey: "AIzaSyAp4s_81nX_PqHpDbVIVpKBZkmfSJMD1k4",
-  authDomain: "smart-greenhouse-495cf.firebaseapp.com",
-  projectId: "smart-greenhouse-495cf",
-  storageBucket: "smart-greenhouse-495cf.appspot.com",
-  messagingSenderId: "785974998268",
-  appId: "1:785974998268:web:b5b954ce4c99ded14cd379"
+  apiKey: "AIzaSyCYaUsk5NChOpQo_xnETryii1vg3CSHqA8",
+  authDomain: "smart-greenhouse-bfd69.firebaseapp.com",
+  projectId: "smart-greenhouse-bfd69",
+  storageBucket: "smart-greenhouse-bfd69.appspot.com",
+  messagingSenderId: "38004301581",
+  appId: "1:38004301581:web:156c078f412e99895a9a44",
 };

@@ -44,11 +44,11 @@ function DashboardGraphItem({ name, title }: Dashboard.GraphItemProps) {
           { value: valuePercentDifference, fill: "#F1F4F6" },
         ]);
       });
-    }
 
-    if (firstSnapshot) {
-      setFirstSnapshot(false);
-      setLoading(false);
+      if (firstSnapshot) {
+        setFirstSnapshot(false);
+        setLoading(false);
+      }
     }
   }
 
