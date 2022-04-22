@@ -25,7 +25,8 @@ Del lado del cliente fueron implementadas las siguientes tecnologías:
 **2.** React  
 **3.** Material-UI  
 **4.** Firebase Firestore  
-**5.** Netlify
+**5.** Recharts (Graphs Library)  
+**6.** Netlify
 
 ## Servidor
 
@@ -57,6 +58,8 @@ Gracias a estos, con la data almacenada se puede crear un sistema que aprenda lo
 **•** **Material-UI:** Es simplemente una biblioteca que nos permite importar y usar diferentes componentes para crear una interfaz de usuario en nuestras aplicaciones React.
 
 **•** **Firebase Firestore:** Es una base de datos de documentos NoSQL creada para escalado automático, alto rendimiento y facilidad de desarrollo de aplicaciones, además de tener la característica de tiempo real.
+
+**•** **Recharts:** Es una biblioteca de gráficos redefinida creada con React. El objetivo principal de esta biblioteca es ayudarlo a escribir gráficos en aplicaciones React sin ningún problema.
 
 **•** **Netlify:** Es una empresa de informática en la nube con sede en San Francisco que ofrece alojamiento y servicios backend sin servidor para aplicaciones web y sitios web estáticos.
 
