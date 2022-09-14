@@ -4,13 +4,20 @@ import {
   ReadlineParser,
   ReadlineOptions,
 } from "serialport";
+import * as dotenv from 'dotenv'
+dotenv.config();
+import { ObjectId } from "mongodb";
+import * as mongoDB from "mongodb";
+import express, { NextFunction, Request, Response } from "express";
+import { Sequelize } from 'sequelize-typescript'
+
 import { AutoDetectTypes } from "@serialport/bindings-cpp";
 
 import admin from "firebase-admin";
 import { getFirestore } from "firebase-admin/firestore";
 
 import { Arduino } from "./types/types";
-
+const app = express();
 export class App implements Arduino.App {
   readonly port: SerialPort<AutoDetectTypes>;
   readonly parser: ReadlineParser;
@@ -43,18 +50,16 @@ export class App implements Arduino.App {
     this.parser.on("data", listener);
   }
 
-  connectDB(): admin.firestore.Firestore | void {
-    try {
-      admin.initializeApp();
-      const db = getFirestore();
-      console.log("DB Connected");
-      return db;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   init(): void {
     this.port.open();
-  }
 }
+//export default class indextest {
+  //constructor(
+    //public name: string,
+    //public price: number,
+    //public category: string,
+    //public id?: ObjectId
+  //) {}
+}
+
+export const collections: { indextest?: mongoDB.Collection } = {};

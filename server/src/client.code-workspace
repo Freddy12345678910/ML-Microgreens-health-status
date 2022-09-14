@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\client"
+		},
+		{
+			"path": "..\\..\\node_modules"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\sketch_mar25a.ino"
+		}
+	]
+}
