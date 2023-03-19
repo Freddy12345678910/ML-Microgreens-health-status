@@ -1,8 +1,0 @@
-# Modules
-node_modules
-
-# Production code
-dist
-
-# Environment Variables
-.env
