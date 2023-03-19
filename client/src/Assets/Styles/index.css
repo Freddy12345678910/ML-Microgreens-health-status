@@ -1,9 +1,0 @@
-:root {
-  --body-bg: #f1f4f6;
-}
-
-body {
-  background: var(--body-bg);
-  font-family: "Roboto", "sans-serif";
-  overflow-x: hidden;
-}
